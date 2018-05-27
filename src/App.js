@@ -1,19 +1,25 @@
-import React, { Component } from 'react';
-import './stylesheets/style.scss';
-import Header from './components/header';
-import Footer from './components/footer';
-import Layout from './views/layout';
-import Menu from './components/menu';
-import template from './template.pug';
+import React, { Component, Fragment } from 'react';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
+
+import './App.css';
+
+// Component
+import MenuTop from './components/MenuTop'
+import MenuLeft from './components/MenuLeft'
+import HomePage from './pages/Home'
+
 class App extends Component {
-    render() {
-        return template.call(this, {
-            Header,
-            Menu,
-            Footer,
-            Layout
-        });
-    }
-};
+  render() {
+    return (
+      <BrowserRouter>
+        <Fragment>
+          <MenuTop />
+          <Route exact path="/" component={HomePage} />
+          <Route path="/about" component={HomePage} />
+        </Fragment>
+      </BrowserRouter>
+    );
+  }
+}
 
 export default App;
