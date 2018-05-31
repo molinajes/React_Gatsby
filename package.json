@@ -1,8 +1,9 @@
 {
   "name": "konnexion",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "private": true,
   "dependencies": {
+    "animated": "^0.2.2",
     "lodash": "^4.17.10",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
