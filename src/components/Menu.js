@@ -1,10 +1,12 @@
-import React, { Component, Fragment } from 'react';
+// IDEA: совместить с неосновым меню
+import React, { Component } from 'react';
 import _ from 'lodash'
-import { getColor, getIndex, getHash } from 'utils'
-import routes from 'routes'
-
-// Components
 import { Link, MenuLeft, MenuTop } from 'components'
+import menu from './menus'
+
+// to Utils file
+const getColor = (href) => _.get(_.find(menu, { href }), 'color')
+const getIndex = (href) => _.findIndex(_.filter(menu, { menu: true }), { href })
 
 class Menu extends Component {
   constructor(props) {
@@ -21,34 +23,46 @@ class Menu extends Component {
   }
 
   handleLink = (href) => {
-    this.props.scrollToSlide(getIndex(href)+1)
     this.handleMenuToggle(false)
   }
 
   render() {
-    let { location, hash } = this.props
+    let { href } = this.props
+    let menuHref = href.slice(1)
     let { isOpen } = this.state
-    if (!location) { location = { hash } }
+    let color = getColor(href.slice(1))
 
-    if (location.pathname === '/') return <div />
+    // определяем где отображается меню
+    // if (!location) { location = { href } }
+    // if (location.pathname === '/') return <div />
 
     return (
-      <Fragment>
+      <div>
         <MenuTop
-          color={getColor(`/${location.hash}`)}
-          handleMenuToggle={this.handleMenuToggle}
+          color={color}
           isOpen={isOpen}
+          handleMenuToggle={this.handleMenuToggle}
           handleLink={this.handleLink}
         />
         <MenuLeft
-          color={getColor(`/${location.hash}`)}
+          color={color}
           isOpen={isOpen}
         >
-          {_.map(_.filter(routes, { menu: 1 }), ({href, title}) =>
-            <Link key={href} to={href} onClick={() => this.handleLink(href)}>{title}</Link>
+          <div
+            className="link-with-arrow-inverted"
+            onClick={() => { window.history && window.history.back(); this.handleLink(href) }}
+          >Back</div>
+
+          {_.map(_.filter(menu, { menu: true }), ({ href, title }) =>
+            <Link
+              key={href}
+              to={`/${href}`}
+              className={href === menuHref ? 'active' : '' }
+              onClick={() => this.handleLink(href)}
+            >{title}</Link>
           )}
         </MenuLeft>
-      </Fragment>
+      </div>
     );
   }
 }

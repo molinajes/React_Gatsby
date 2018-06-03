@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import Link from 'gatsby-link'
 
 import Error from './Error'
 import Section from './Section'
@@ -7,6 +7,8 @@ import MenuLeft from './MenuLeft'
 import MenuTop from './MenuTop'
 import Menu from './Menu'
 import SocialLinks from './SocialLinks'
+
+import BlogPost from './BlogPost'
 
 export {
   Link,
@@ -17,4 +19,5 @@ export {
   MenuTop,
   Menu,
   SocialLinks,
+  BlogPost,
 }
