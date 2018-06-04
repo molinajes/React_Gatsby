@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="21px" height="22px" viewBox="0 0 21 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon_Mail</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Konnexion-Site" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="À-Propos-(960)" transform="translate(-461.000000, -1298.000000)">
+            <g id="Team" transform="translate(271.000000, 706.000000)">
+                <g id="Alexandre-Giroux" transform="translate(0.000000, 362.000000)">
+                    <g id="Hover">
+                        <g id="Icon_Mail" transform="translate(191.150289, 231.000000)">
+                            <rect id="Border" stroke="#FFFFFF" x="0" y="0" width="19.1083481" height="19.8905612" rx="9.55417405"></rect>
+                            <path d="M13.0220927,6.6928707 L5.97790729,6.6928707 L9.5,10.2149634 L13.0220927,6.6928707 Z M13.3071293,6.99396856 L9.64617783,10.6547167 C9.56505828,10.7360396 9.43372188,10.7360396 9.35382217,10.6547167 L5.69144755,6.99396856 L5.69144755,12.3342369 L13.3071293,12.3342369 L13.3071293,6.99396856 Z M5.34643535,6 L5.35395771,6 L13.6535647,6 C13.8465031,6 14,6.15492003 14,6.34643535 L14,6.35497425 L14,12.6806723 C14,12.8709677 13.8465031,13.0271076 13.6535647,13.0271076 L13.6450258,13.0271076 L5.34643535,13.0271076 C5.15492003,13.0271076 5,12.8709677 5,12.6806723 L5,12.6707102 L5,6.34643535 C5,6.15492003 5.15492003,6 5.34643535,6 Z" id="Mail" fill="#FEFEFE"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
