@@ -3,8 +3,9 @@ import _ from 'lodash'
 import Link from 'gatsby-link'
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { Menu, Section, Container } from 'components'
+import { Menu, Section, Container, PortfolioList } from 'components'
 
+import portfolioMock from 'components/portfolioMock'
 
 const PortfolioPage = ({ history }) => {
   let href = _.get(history, 'location.pathname')
@@ -23,14 +24,21 @@ const PortfolioPage = ({ history }) => {
           </TabList>
 
           <TabPanel>
-            <h2>Any content 1</h2>
+            <PortfolioList data={portfolioMock} />
           </TabPanel>
           <TabPanel>
-            <h2>Any content 2</h2>
+            <PortfolioList />
+          </TabPanel>
+          <TabPanel>
+            <PortfolioList data={portfolioMock} />
+          </TabPanel>
+          <TabPanel>
+            <PortfolioList />
+          </TabPanel>
+          <TabPanel>
+            <PortfolioList />
           </TabPanel>
         </Tabs>
-        <p>Welcome to page 2</p>
-        <Link to="/">Go back to the homepage</Link>
       </Container>
     </Section>
   );

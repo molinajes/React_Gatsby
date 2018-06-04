@@ -9,7 +9,7 @@ import HomePortfolio from 'components/IndexPage/HomePortfolio'
 import HomeServices from 'components/IndexPage/HomeServices'
 import HomeAbout from 'components/IndexPage/HomeAbout'
 import HomeBlog from 'components/IndexPage/HomeBlog'
-import HomeContact from 'components/IndexPage/HomeContact'
+import Contact from 'components/Contact'
 import HomeMenu from 'components/IndexPage/HomeMenu'
 
 const getHash = (index) => _.get(menu[index], 'hash')
@@ -43,7 +43,7 @@ class IndexPage extends Component {
           <HomeBlog />
         </Slide>
         <Slide>
-          <HomeContact />
+          <Contact />
           <div className="copyrights">
             <p>© 2018 Konnexion.ca - Tous droits réservés</p>
           </div>
