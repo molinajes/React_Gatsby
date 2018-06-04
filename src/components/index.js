@@ -10,6 +10,10 @@ import SocialLinks from './SocialLinks'
 
 import BlogPost from './BlogPost'
 
+import { PortfolioList, PortfolioItem } from './Portfolio'
+
+import Contact from './Contact'
+
 export {
   Link,
   Error,
@@ -20,4 +24,7 @@ export {
   Menu,
   SocialLinks,
   BlogPost,
+  PortfolioList,
+  PortfolioItem,
+  Contact,
 }
