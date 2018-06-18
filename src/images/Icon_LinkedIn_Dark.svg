@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon_LinkedIn_Dark</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Konnexion-Site" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Accueil-(1140)" transform="translate(-983.000000, -639.000000)">
+            <g id="Projects" transform="translate(0.000000, 601.000000)">
+                <g id="Top-Menu" transform="translate(45.000000, 39.000000)">
+                    <g id="Icon_LinkedIn_Dark" transform="translate(939.000000, 0.000000)">
+                        <rect id="Rectangle-3-Copy" stroke="#2B2E42" x="0" y="0" width="30" height="30" rx="15"></rect>
+                        <rect id="Rectangle-path" fill="#2B2E42" fill-rule="nonzero" x="8.7" y="12.9" width="2.87875" height="8.6275"></rect>
+                        <path d="M10.35375,8.735 C9.37375,8.735 8.7,9.3895 8.7,10.2225 C8.7,11.0555 9.3125,11.71 10.2925,11.71 C11.2725,11.71 11.94625,11.0555 11.94625,10.2225 C11.94625,9.3895 11.33375,8.735 10.35375,8.735 Z" id="Shape" fill="#2B2E42" fill-rule="nonzero"></path>
+                        <path d="M19.05125,12.9 C17.52,12.9 16.84625,13.733 16.47875,14.328 L16.47875,13.0785 L13.6,13.0785 C13.66125,13.9115 13.6,21.706 13.6,21.706 L16.47875,21.706 L16.47875,16.8865 C16.47875,16.6485 16.47875,16.351 16.60125,16.1725 C16.785,15.637 17.275,15.1015 18.07125,15.1015 C19.1125,15.1015 19.54125,15.875 19.54125,17.065 L19.54125,21.7655 L22.35875,21.7655 L22.35875,16.827 C22.35875,14.1495 20.95,12.9 19.05125,12.9 Z" id="Shape" fill="#2B2E42" fill-rule="nonzero"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

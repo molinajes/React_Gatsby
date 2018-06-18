@@ -12,7 +12,8 @@ class Menu extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      scrolled: false,
     }
   }
 
@@ -23,8 +24,17 @@ class Menu extends Component {
   }
 
   handleLink = (href) => {
-    this.props.scrollToSlide(getIndex(href)+1)
+    let index = getIndex(href)+2
+    if (window && window.fpTurnTo) {
+      window.fpTurnTo(index)
+    }
     this.handleMenuToggle(false)
+  }
+
+  componentDidMount() {
+    let { hash } = this.props
+    let menuHash = hash.slice(1)
+    this.handleLink(menuHash)
   }
 
   render() {
@@ -40,6 +50,7 @@ class Menu extends Component {
     return (
       <div>
         <MenuTop
+          fixed={this.props.fixed}
           color={color}
           isOpen={isOpen}
           handleMenuToggle={this.handleMenuToggle}

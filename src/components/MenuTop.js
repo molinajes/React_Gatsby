@@ -1,39 +1,36 @@
 import React, { Component } from 'react';
-import { Link, SocialLinks, Container } from 'components'
+import { Link, IconKonnexion, SocialLinks, Container } from 'components'
 
-const MenuTop = ({ color, handleMenuToggle, isOpen, handleLink }) => {
+import menuBurgerLightImg from "images/Icon_Burger_Light.svg"
+import menuBurgerDarkImg from "images/Icon_Burger_Dark.svg"
+import menuCloseLightImg from "images/Icon_Close_Light.svg"
+
+const MenuTop = ({ color, handleMenuToggle, isOpen, fixed, handleLink }) => {
   let ICONS = {
-    logo: "/images/Logo_Konnexion_Light.svg",
-    menu: "/images/Icon_Burger_Light.svg",
-    facebook: "/images/Icon_Facebook_Light.svg",
-    linkedin: "/images/Icon_LinkedIn_Light.svg",
+    menu: menuBurgerLightImg,
   }
   if (color === 1 && !isOpen) {
     ICONS = {
-      logo: "/images/Logo_Konnexion_Dark.svg",
-      menu: "/images/Icon_Burger_Dark.svg",
-      facebook: "/images/Icon_Facebook_Dark.svg",
-      linkedin: "/images/Icon_LinkedIn_Dark.svg",
+      menu: menuBurgerDarkImg,
     }
   }
   if (color === 2 && !isOpen) {
     ICONS = {
-      logo: "/images/Logo_Konnexion_Dark.svg",
-      menu: "/images/Icon_Burger_Dark.svg",
-      facebook: "/images/Icon_Facebook_Light.svg",
-      linkedin: "/images/Icon_LinkedIn_Light.svg",
+      menu: menuBurgerDarkImg,
     }
   }
+  let style = (color === 2 || color === 0) || isOpen ? true : false
+  let styleLogo = (color === 0) || isOpen ? true : false
   return (
-    <div className="navbar w-nav">
+    <div className="navbar w-nav" style={fixed ? { position: 'fixed' } : {}}>
       <Container>
         <div className="nav-menu-top">
           <Link to='/' onClick={handleLink} className="brand w-nav-brand">
-            <img src={ICONS.logo} />
+            <IconKonnexion light={styleLogo} />
           </Link>
-          <SocialLinks icons={ICONS} />
+          <SocialLinks style={style} />
           <div className="menu-button" onClick={handleMenuToggle}>
-            <img src={isOpen ? "/images/Icon_Close_Light.svg" : ICONS.menu} />
+            <img src={isOpen ? menuCloseLightImg : ICONS.menu} />
           </div>
         </div>
       </Container>

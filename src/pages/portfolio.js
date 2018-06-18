@@ -7,41 +7,66 @@ import { Menu, Section, Container, PortfolioList } from 'components'
 
 import portfolioMock from 'components/portfolioMock'
 
-const PortfolioPage = ({ history }) => {
+const PortfolioPage = ({ history, data: { allContentfulPortfolioSingle } }) => {
+
+  let allPortfolioSingle = _.map(_.get(allContentfulPortfolioSingle, 'edges'), item => { return item.node } )
+  let groupedPortfolioSingle = _.groupBy(allPortfolioSingle, 'category.title')
+
   let href = _.get(history, 'location.pathname')
   return (
     <Section>
-      <Menu href={href} />
+      <Menu href={href} backBeh={{ title: 'Accueil', link: '/#portfolio' }} />
       <Container>
         <h1>Réalisations</h1>
         <Tabs>
           <TabList>
-            <Tab>Toutes les réalisations</Tab>
-            <Tab>Site web</Tab>
-            <Tab>Application Mobile</Tab>
-            <Tab>E-Commerce</Tab>
-            <Tab>Design</Tab>
+            <Tab>All</Tab>
+            {_.map(_.keys(groupedPortfolioSingle), item => <Tab key={item}>{item}</Tab>)}
           </TabList>
-
           <TabPanel>
-            <PortfolioList data={portfolioMock} />
+            <PortfolioList data={allPortfolioSingle} />
           </TabPanel>
-          <TabPanel>
-            <PortfolioList />
-          </TabPanel>
-          <TabPanel>
-            <PortfolioList data={portfolioMock} />
-          </TabPanel>
-          <TabPanel>
-            <PortfolioList />
-          </TabPanel>
-          <TabPanel>
-            <PortfolioList />
-          </TabPanel>
+          {_.map(_.keys(groupedPortfolioSingle), item => {
+            return (
+              <TabPanel key={item}>
+                <PortfolioList data={groupedPortfolioSingle[item]} />
+              </TabPanel>
+            );
+          })}
         </Tabs>
+
       </Container>
     </Section>
   );
 }
 
 export default PortfolioPage
+
+
+export const allContentfulPortfolioSingle = graphql`
+  query allContentfulPortfolioSingle {
+    allContentfulPortfolioSingle {
+      edges {
+        node {
+          title
+          slug
+          category {
+            title
+          }
+          thumbnail {
+            title
+            sizes {
+              src
+              srcSet
+              sizes
+            }
+            file {
+              url
+              fileName
+            }
+          }
+        }
+      }
+    }
+  }
+`

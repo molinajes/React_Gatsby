@@ -1,7 +1,7 @@
 // IDEA: совместить с неосновым меню
 import React, { Component } from 'react';
 import _ from 'lodash'
-import { Link, MenuLeft, MenuTop } from 'components'
+import { Link, MenuLeft, MenuTop, Copyrights } from 'components'
 import menu from './menus'
 
 // to Utils file
@@ -27,10 +27,12 @@ class Menu extends Component {
   }
 
   render() {
-    let { href } = this.props
+    let { backBeh, href } = this.props
+    let hrefF = href.split('/')[0] || href.split('/')[1]
     let menuHref = href.slice(1)
     let { isOpen } = this.state
-    let color = getColor(href.slice(1))
+    let color = getColor(hrefF)
+    if (this.props.color) { color = this.props.color }
 
     // определяем где отображается меню
     // if (!location) { location = { href } }
@@ -48,13 +50,21 @@ class Menu extends Component {
           color={color}
           isOpen={isOpen}
         >
-          <div
-            className="link-with-arrow-inverted"
-            onClick={() => { window.history && window.history.back(); this.handleLink(href) }}
-          >Back</div>
+          { backBeh ?
+            <Link
+              to={backBeh.link || '/'}
+              className="link-with-arrow-inverted back-button"
+            >{backBeh.title}</Link>
+            :
+            <div
+              className="link-with-arrow-inverted back-button"
+              onClick={() => { window.history && window.history.back(); this.handleLink(href) }}
+            >Back</div>
+          }
 
           {_.map(_.filter(menu, { menu: true }), ({ href, title }) =>
             <Link
+              activeClassName="active"
               key={href}
               to={`/${href}`}
               className={href === menuHref ? 'active' : '' }
@@ -62,6 +72,7 @@ class Menu extends Component {
             >{title}</Link>
           )}
         </MenuLeft>
+        <Copyrights color={color} />
       </div>
     );
   }

@@ -15,11 +15,11 @@ module.exports = {
     },
     {
       resolve: `gatsby-plugin-nprogress`,
-      options: {
-        color: `#1ee095`,
-        showSpinner: true,
-        minimum: 0.3,
-      },
+      // options: {
+      //   color: `#1ee095`,
+      //   showSpinner: true,
+      //   minimum: 0.3,
+      // },
     },
     {
       resolve: `gatsby-plugin-favicon`,
@@ -36,6 +36,17 @@ module.exports = {
           twitter: false,
           yandex: false,
           windows: false
+        }
+      }
+    },
+    {
+      resolve: 'gatsby-plugin-purify-css',
+      options: {
+        /* Defaults */
+        styleId: 'gatsby-inlined-css',
+        purifyOptions: {
+          info: true,
+          minify: true
         }
       }
     }

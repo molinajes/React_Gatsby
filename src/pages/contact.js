@@ -1,15 +1,19 @@
 import React from 'react'
 import _ from 'lodash'
 import Link from 'gatsby-link'
-import { Menu, Section, Container, Contact } from 'components'
+import { Menu, Section, Page, Container, Contact } from 'components'
 
 const ContactPage = ({ history }) => {
   let href = _.get(history, 'location.pathname')
   return (
-    <div>
-      <Menu href={href} />
-      <Contact />
-    </div>
+    <Page>
+      <Section dark>
+        <Menu href={href} backBeh={{ title: 'Accueil', link: '/' }} />
+        <Container>
+          <Contact />
+        </Container>
+      </Section>
+    </Page>
   );
 }
 

@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
+import { Link, IconFacebook, IconLinkedIn } from 'components'
 
-const SocialLinks = ({ icons, small }) => (
+const SocialLinks = ({ small, style }) => (
   <div className={small ? "social-links-small" : "social-links" }>
     <div className="social-link">
-      <img src={icons.facebook} />
+      <IconFacebook light={style} />
     </div>
     <div className="social-link">
-      <img src={icons.linkedin} />
+      <IconLinkedIn light={style} />
     </div>
-    {!small && <a href="#" className="button w-nav-link">Contactez-nous</a>}
+    {!small &&
+      <Link
+        to="/contact"
+        className={`button w-nav-link${style ? ` ${style}` : ''}`}
+      >Contactez-nous</Link>}
   </div>
 )
 
