@@ -34,6 +34,12 @@ const menu = [
     href: 'contact',
     color: 0,
     menu: true,
+  },
+  {
+    title: 'Clients',
+    href: 'clients',
+    color: 0,
+    menu: false,
   }
 ]
 
