@@ -16,7 +16,7 @@ import HomeAbout from 'components/IndexPage/HomeAbout'
 import HomeBlog from 'components/IndexPage/HomeBlog'
 import Contact from 'components/Contact'
 
-import { Section as SectionEasy, Container, Copyrights } from 'components'
+import { Section as SectionEasy, Container, Copyrights, Menu } from 'components'
 
 // to Utils file
 const getColor = (hash) => _.get(_.find(menu, { hash }), 'color')
@@ -95,7 +95,8 @@ class IndexPage extends Component {
           </Scroller>
         </BrowserView>
         <MobileView device={isMobile}>
-          <HomeMenu hash={hash} />
+          {/* <HomeMenu hash={hash} /> */}
+          <Menu href={href} />
           <HomeSection />
           <HomePortfolio data={portfolio} />
           <HomeServices data={service} />
