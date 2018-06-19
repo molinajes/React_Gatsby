@@ -2275,6 +2275,7 @@ a h5 {
 }
 
 .page {
+  position: relative;
   height: 100vh;
 }
 
@@ -2495,7 +2496,7 @@ a h5 {
   top: 0px;
   right: 0px;
   bottom: 0px;
-  z-index: 999;
+  z-index: 99;
   width: 40%;
   height: 100%;
   background-color: #1ee095;
@@ -3159,8 +3160,29 @@ a h5 {
     display: block;
     position: absolute;
     width: 30px;
-    left: -30px;
+    left: 5px;
     order: -1;
+  }
+  .nav-menu-left a.back-button {
+    display: none;
+  }
+  .navbar {
+    position: fixed;
+  }
+  .navbar .container-1200.w-container {
+    max-width: 100%;
+  }
+  .nav-menu-top {
+    padding: 10px 5%;
+    transition: all 0.4s ease-in;
+  }
+  .nav-menu-top.white {
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  }
+  .nav-menu-top.dark {
+    background: #2b2e42;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
   }
   .blog-item {
     flex-direction: column;
@@ -3180,6 +3202,10 @@ a h5 {
   body {
     font-size: 16px;
     line-height: 21px;
+  }
+  .page {
+    height: 100%;
+    min-height: 100vh;
   }
   .section {
     overflow: hidden;
