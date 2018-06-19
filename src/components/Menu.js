@@ -34,6 +34,7 @@ class Menu extends Component {
     let color = getColor(hrefF)
     if (this.props.color) { color = this.props.color }
 
+
     // определяем где отображается меню
     // if (!location) { location = { href } }
     // if (location.pathname === '/') return <div />

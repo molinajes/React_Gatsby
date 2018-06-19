@@ -5,6 +5,51 @@ import menuBurgerLightImg from "images/Icon_Burger_Light.svg"
 import menuBurgerDarkImg from "images/Icon_Burger_Dark.svg"
 import menuCloseLightImg from "images/Icon_Close_Light.svg"
 
+class NavMenuTop extends Component {
+  constructor(props) {
+		super(props);
+    this.state = {
+      scrolled: false
+    }
+		this.handleScroll = this.handleScroll.bind(this);
+	}
+
+	componentDidMount() {
+		window.addEventListener('scroll', this.handleScroll);
+	};
+
+	componentWillUnmount() {
+		window.removeEventListener('scroll', this.handleScroll);
+	};
+
+	handleScroll(event) {
+    let scrolled = (window && window.scrollY) > 30 ? true : false
+    this.setState({ scrolled })
+	};
+
+  render() {
+    let { children, color, isOpen } = this.props
+    let { scrolled } = this.state
+    let style = ''
+    if (scrolled) {
+      style = ' white'
+    }
+    if (scrolled && color === 0 && !isOpen) {
+      style = ' dark'
+    }
+    if (scrolled && color === 1 && !isOpen) {
+      style = ' white'
+    }
+
+    return (
+      <div className={`nav-menu-top ${style}`}>
+        {children}
+      </div>
+    );
+  }
+
+}
+
 const MenuTop = ({ color, handleMenuToggle, isOpen, fixed, handleLink }) => {
   let ICONS = {
     menu: menuBurgerLightImg,
@@ -24,7 +69,7 @@ const MenuTop = ({ color, handleMenuToggle, isOpen, fixed, handleLink }) => {
   return (
     <div className="navbar w-nav" style={fixed ? { position: 'fixed' } : {}}>
       <Container>
-        <div className="nav-menu-top">
+        <NavMenuTop color={color} isOpen={isOpen}>
           <Link to='/' onClick={handleLink} className="brand w-nav-brand">
             <IconKonnexion light={styleLogo} />
           </Link>
@@ -32,7 +77,7 @@ const MenuTop = ({ color, handleMenuToggle, isOpen, fixed, handleLink }) => {
           <div className="menu-button" onClick={handleMenuToggle}>
             <img src={isOpen ? menuCloseLightImg : ICONS.menu} />
           </div>
-        </div>
+        </NavMenuTop>
       </Container>
     </div>
   )
