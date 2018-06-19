@@ -25,11 +25,9 @@ const ListServicesItem = ({ title, service_item, icon, slug }) => (
 const ListServices = ({ data }) => {
   if (!data) return <Error>Nothing to show</Error>
   return (
-    <div>
       <div className="home-services-list">
         {_.map(data, item => <ListServicesItem key={item.title} {...item} /> ) }
       </div>
-    </div>
   )
 }
 
