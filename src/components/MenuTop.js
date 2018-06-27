@@ -31,7 +31,7 @@ class NavMenuTop extends Component {
     let { children, color, isOpen } = this.props
     let { scrolled } = this.state
     let style = ''
-    if (scrolled) {
+    if (scrolled && !isOpen) {
       style = ' white'
     }
     if (scrolled && color === 0 && !isOpen) {

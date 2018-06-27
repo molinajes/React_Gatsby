@@ -1,5 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
+import Helmet from 'react-helmet'
 import { Form, Text } from 'react-form'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { Error, Menu, Section, Container, Link, BlogPost, BlogSideBar } from 'components'
@@ -14,22 +15,22 @@ const BlogTabPanel = ({ data }) => {
       <BlogPost main {...onePost} />
       <div className="blog-grid-content">
         {_.map(allPosts, post => <BlogPost key={post.title} {...post} /> )}
-        {_.map(allPosts, post => <BlogPost key={post.title} {...post} /> )}
       </div>
       <BlogSideBar />
     </div>
   )
 }
 
-const BlogPage = ({ history, data: { allContentfulBlogPost, allContentfulTag } }) => {
-  let allTags = _.map(_.get(allContentfulTag, 'edges'), item => item.node )
-  let allBlogPost = _.map(_.get(allContentfulBlogPost, 'edges'), item => item.node )
+const BlogPage = ({ history, data }) => {
+  let allTags = _.map(_.get(data, 'allContentfulTag.edges'), item => item.node )
+  let allBlogPost = _.map(_.get(data, 'allContentfulBlogPost.edges'), item => item.node )
   let groupedBlogPost = _.groupBy(allBlogPost, 'category.title')
   let href = _.get(history, 'location.pathname')
 
   return (
     <Section>
-      <Menu href={href} backBeh={{ title: 'Accueil', link: '/#blog' }} />
+      <Helmet title="Nouvelles" />
+      <Menu href={href} backBeh={{ title: 'Accueil', link: '/#nouvelles' }} />
       <Container>
         <h1>Nouvelles</h1>
         <Tabs>
@@ -68,7 +69,10 @@ export const blogPageQuery = graphql`
         }
       }
     }
-    allContentfulBlogPost {
+    allContentfulBlogPost (
+      filter: { node_locale: { eq: "fr-CA" } }
+      sort: { order: ASC, fields: [createdAt] },
+    ) {
       edges {
         node {
           slug

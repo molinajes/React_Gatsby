@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment'
 import { Link, Error, Section, Container } from 'components'
 
 import imagePlaceholder from 'images/Image_Placeholder.svg'
@@ -6,7 +7,7 @@ import imagePlaceholder from 'images/Image_Placeholder.svg'
 const BlogPost = ({ main, mini, title, datePublished, category, excerpt, featuredImage, slug }) => {
 
   if (mini) return (
-    <Link to={`/blog/${slug}`}>
+    <Link to={`/nouvelles/${slug}`}>
       <div className={`blog-item`}>
         <div className="blog-item-image mini">
           {featuredImage &&
@@ -28,7 +29,7 @@ const BlogPost = ({ main, mini, title, datePublished, category, excerpt, feature
     <div className={`blog-item${main ? ' big' : ''}`}>
       {slug ?
         <Link
-          to={`/blog/${slug}`} style={{ width: '100%', height: '100%' }}
+          to={`/nouvelles/${slug}`} style={{ width: '100%', height: '100%' }}
           className={`blog-item-image${main ? ' big' : ''}`}
           style={{
             backgroundImage: `url(${featuredImage && featuredImage.sizes.src})`
@@ -44,12 +45,12 @@ const BlogPost = ({ main, mini, title, datePublished, category, excerpt, feature
       {main && <div className='blog-item-image big darker-opacity' />}
       <div className="blog-item-texts">
         <div className="blog-item-texts-inline">
-          <p className="blog-item-texts-date">{datePublished}</p>
+          <p className="blog-item-texts-date">{moment(datePublished).format('Do MMMM YYYY')}</p>
           <p className="blog-item-texts-date">{category && category.title}</p>
         </div>
-        {slug ? <Link to={`/blog/${slug}`} style={{ width: '100%' }}><h5>{title}</h5></Link> : <h5>{title}</h5>}
+        {slug ? <Link to={`/nouvelles/${slug}`} style={{ width: '100%' }}><h5>{title}</h5></Link> : <h5>{title}</h5>}
         <p className="w-hidden-small">{excerpt && excerpt.excerpt}</p>
-        {slug && <Link to={`/blog/${slug}`} className="link-with-arrow">Lire la suite</Link>}
+        {slug && <Link to={`/nouvelles/${slug}`} className="link-with-arrow">Lire la suite</Link>}
       </div>
     </div>
 
@@ -60,8 +61,8 @@ const BlogPost = ({ main, mini, title, datePublished, category, excerpt, feature
 BlogPost.defaultProps = {
   main: false,
   mini: false,
-  title: 'Titre de l’article sur deux lignes',
-  category: 'Web',
+  title: 'Title',
+  category: 'Category',
   date: '20 mars 2018',
   description: 'Lorem ipsum dolor sit amet, consectetur.',
   slug: null,

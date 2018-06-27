@@ -1,5 +1,4 @@
 import _ from 'lodash'
-// import routes from 'routes'
 
 const routes = []
 

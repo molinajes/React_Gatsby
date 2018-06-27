@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment'
 import { Link, Error, Section, Container } from 'components'
 
 const settings = {
@@ -10,20 +11,23 @@ const settings = {
   slidesToScroll: 1
 }
 
-const HomeBlogItem = ({ title, datePublished, excerpt, featuredImage, slug }) => (
+const HomeBlogItem = ({ title, datePublished, category, excerpt, featuredImage, slug }) => (
   <div className="home-blog-item">
-    <Link to={`/blog/${slug}`} className="home-blog-item-image"
+    <Link to={`/nouvelles/${slug}`} className="home-blog-item-image"
       style={{
         backgroundImage: `url(${featuredImage && featuredImage.sizes.src})`
       }}
     />
     <div className="home-blog-item-texts">
-      <p className="home-blog-item-texts-date">{datePublished}</p>
-      <Link to={`/blog/${slug}`}>
+      <div className="home-blog-item-texts-div">
+        <span className="home-blog-item-texts-date">{moment(datePublished).format('Do MMMM YYYY')}</span>
+        <span className="home-blog-item-texts-date">{category && category.title}</span>
+      </div>
+      <Link to={`/nouvelles/${slug}`}>
         <h5>{title}</h5>
       </Link>
       <p>{excerpt && excerpt.excerpt}</p>
-      <Link to={`/blog/${slug}`} className="link-with-arrow">Lire la suite</Link>
+      <Link to={`/nouvelles/${slug}`} className="link-with-arrow">Lire la suite</Link>
     </div>
   </div>
 )
@@ -47,7 +51,7 @@ const HomeBlog = ({ data }) => {
         <h2>Nouvelles</h2>
         <ListBlog data={list} />
         <div className="padding-view-all-center">
-          <Link to="/blog" className="link-with-arrow">Voir toutes les nouvelles</Link>
+          <Link to="/nouvelles" className="link-with-arrow">Voir toutes les nouvelles</Link>
         </div>
       </Container>
     </Section>

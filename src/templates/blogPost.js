@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import marked from 'marked'
 import _ from 'lodash'
+import Helmet from 'react-helmet'
 import { Link, Menu, Section, Container, BlogPost, BlogSideBar } from 'components'
 
 import iconMailDark from "images/Icon_Mail_Dark.svg"
@@ -25,7 +27,7 @@ const Author = ({ name, photo, description, linkedIn, email }) => (
           {
             linkedIn &&
               <a href={linkedIn} target="_blank">
-                <img src={iconMailDark} />
+                <img src={iconLinkedIdDark} />
               </a>
           }
         </div>
@@ -40,13 +42,28 @@ const Author = ({ name, photo, description, linkedIn, email }) => (
 
 class BlogPostPage extends Component {
 
+  componentDidMount() {
+    setTimeout(()=>{
+      window && window.scrollTo(0, 0)
+    }, 500)
+  }
+
   render() {
     let href = _.get(this.props, 'history.location.pathname')
-    let { title, datePublished, category, featuredImage, content: { content }, author } = this.props.data.contentfulBlogPost
+    let { title, datePublished, category, featuredImage, content, excerpt: { excerpt }, author } = this.props.data.contentfulBlogPost
+    let nextPost = _.get(this.props, 'pathContext.next.slug')
 
     return (
       <Section>
-        <Menu href={href} backBeh={{ title: 'Retour', link: '/blog' }} />
+        <Helmet title={`${title} | Nouvelles`}>
+          <meta name='description' content={excerpt} />
+          <meta property="og:url" content={`https://konnexion.ca${href}`} />
+          <meta property="og:type" content="article" />
+          <meta property="og:title" content={title} />
+          <meta property="og:description" content={excerpt} />
+          <meta property="og:image" content={featuredImage && featuredImage.resize.src} />
+        </Helmet>
+        <Menu href={href} backBeh={{ title: 'Retour', link: '/nouvelles' }} />
         <Container>
           <BlogPost
             main
@@ -57,11 +74,16 @@ class BlogPostPage extends Component {
           />
           <div className="blog-grid">
             <div className="blog-grid-text">
-              {content}
+              {content && <div dangerouslySetInnerHTML={{__html: marked(content.content)}} className="portfolio-content" />}
               <div className="blog-item-additional">
                 <h4>À propos de l’auteur</h4>
                 <Author {...author} />
               </div>
+              <div className="blog-item-additional next-links">
+                <Link to="/nouvelles" className="link-with-arrow inverted">Voir tous les articles</Link>
+                <Link to={`/nouvelles/${nextPost}`} className="link-with-arrow">Article suivant</Link>
+              </div>
+
             </div>
             <BlogSideBar />
           </div>
@@ -91,6 +113,9 @@ export const blogPostPageQuery = graphql`
       }
       featuredImage {
         title
+        resize (width: 1200, height: 630) {
+          src
+        }
         sizes {
           src
           srcSet
@@ -100,6 +125,11 @@ export const blogPostPageQuery = graphql`
           url
         }
       }
+      # ogImage {
+      #   file {
+      #     url
+      #   }
+      # }
       author {
         name
         photo {

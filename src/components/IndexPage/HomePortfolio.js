@@ -12,7 +12,7 @@ const HomePortfolio = ({ data, ...props }) => {
       <Container>
         <PortfolioList data={list} />
         <div className="padding-view-all-center">
-          <Link to='/portfolio' className="link-with-arrow">Voir toutes les réalisations</Link>
+          <Link to='/realisations' className="link-with-arrow">Voir toutes les réalisations</Link>
         </div>
       </Container>
     </Section>

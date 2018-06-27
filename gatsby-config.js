@@ -40,7 +40,7 @@ module.exports = {
       }
     },
     {
-      resolve: 'gatsby-plugin-purify-css',
+      resolve: `gatsby-plugin-purify-css`,
       options: {
         /* Defaults */
         styleId: 'gatsby-inlined-css',
@@ -49,6 +49,18 @@ module.exports = {
           minify: true
         }
       }
-    }
+    },
+    {
+      resolve: `gatsby-plugin-google-tagmanager`,
+      options: {
+        id: 'GTM-PBX7BHP',
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-drift',
+      options: {
+        appId: 'i3zie33wb6np',
+      },
+    },
   ],
 }

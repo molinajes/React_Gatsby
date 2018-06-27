@@ -9,9 +9,10 @@ const Layout = ({ children, data }) => {
     <div>
       <Helmet
         title={data.site.siteMetadata.title}
+        htmlAttributes={{ lang: 'fr' }}
       >
-        <meta charSet='utf-8' />
-        <meta name='description' content='Konnexion' />
+        {/* <meta charSet='utf-8' /> */}
+        {/* <meta name='description' content='Konnexion' /> */}
         {/* <link rel='manifest' href='/manifest.json' /> */}
         <link rel='shortcut icon' href='/favicons/favicon.ico' type='image/x-icon' />
         <link rel='icon' href='/favicons/favicon.png' type='image/png' />

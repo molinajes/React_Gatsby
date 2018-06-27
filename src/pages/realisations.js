@@ -1,5 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
+import Helmet from 'react-helmet'
 import Link from 'gatsby-link'
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
@@ -15,7 +16,8 @@ const PortfolioPage = ({ history, data: { allContentfulPortfolioSingle } }) => {
   let href = _.get(history, 'location.pathname')
   return (
     <Section>
-      <Menu href={href} backBeh={{ title: 'Accueil', link: '/#portfolio' }} />
+      <Helmet title="Réalisations" />
+      <Menu href={href} backBeh={{ title: 'Accueil', link: '/#realisations' }} />
       <Container>
         <h1>Réalisations</h1>
         <Tabs>
@@ -45,7 +47,10 @@ export default PortfolioPage
 
 export const allContentfulPortfolioSingle = graphql`
   query allContentfulPortfolioSingle {
-    allContentfulPortfolioSingle {
+    allContentfulPortfolioSingle (
+      filter: { node_locale: { eq: "fr-CA" } }
+      sort: { order: ASC, fields: [createdAt] },
+    ) {
       edges {
         node {
           title

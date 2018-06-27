@@ -1,6 +1,7 @@
 /* global window */
-import React, { Component } from 'react';
-import _ from 'lodash';
+import React, { Component } from 'react'
+import _ from 'lodash'
+import Helmet from 'react-helmet'
 
 import { BrowserView, MobileView, isBrowser, isMobile } from "react-device-detect";
 import { Scroller, Section } from 'react-fully-scrolled';
@@ -58,6 +59,7 @@ class IndexPage extends Component {
 
     return (
       <div style={{ position: 'relative' }}>
+        <Helmet title="Konnexion" />
         <BrowserView device={isBrowser}>
           <HomeMenu hash={hash} fixed />
           <Scroller
@@ -112,14 +114,16 @@ class IndexPage extends Component {
       </div>
     )
   }
-
 }
 
 export default IndexPage;
 
 export const indexPageQuery = graphql`
   query indexPageQuery {
-    allContentfulServiceCategory {
+    allContentfulServiceCategory (
+      filter: { node_locale: { eq: "fr-CA" } }
+      sort: { order: ASC, fields: [createdAt] },
+    ) {
       edges {
         node {
           title
@@ -141,7 +145,11 @@ export const indexPageQuery = graphql`
         }
       }
     }
-    allContentfulBlogPost(limit: 3) {
+    allContentfulBlogPost (
+      filter: { node_locale: { eq: "fr-CA" } }
+      sort: { order: ASC, fields: [createdAt] },
+      limit: 3
+    ) {
       edges {
         node {
           slug
@@ -167,7 +175,10 @@ export const indexPageQuery = graphql`
         }
       }
     }
-    allContentfulPortfolioSingle(limit: 6) {
+    allContentfulPortfolioSingle(
+      filter: { node_locale: { eq: "fr-CA" } }
+      limit: 6
+    ) {
       edges {
         node {
           title

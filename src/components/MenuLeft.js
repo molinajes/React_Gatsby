@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { SocialLinks } from 'components'
 
-import facebookImg from "images/Icon_Facebook_Light.svg"
-import linkedInImg from "images/Icon_LinkedIn_Light.svg"
-
 const MenuLeft = ({ children, color, isOpen, ...props }) => (
   <div className={`container-left-menu${!isOpen ? ' hide-menu' : ''}`} {...props}>
     <div className="left-nav-bar w-nav">
@@ -14,10 +11,7 @@ const MenuLeft = ({ children, color, isOpen, ...props }) => (
         {children}
         <SocialLinks
           small
-          icons={{
-            facebook: facebookImg,
-            linkedin: linkedInImg,
-          }}
+          style={(color === 2 || color === 0) || isOpen ? true : false} 
         />
       </nav>
     </div>

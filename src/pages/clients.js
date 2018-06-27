@@ -1,5 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
+import Helmet from 'react-helmet'
 import { Menu, Link, Page, Section, Container, PortfolioList } from 'components'
 import SlickSlider from "react-slick";
 
@@ -47,7 +48,8 @@ const ClientsPage = ({ history, data }) => {
   let list = _.map(_.get(portfolio, 'edges'), item => { return item.node } )
   return (
     <Section dark>
-      <Menu href={href} backBeh={{ title: 'Retour', link: '/about' }} />
+      <Helmet title="Clients" />
+      <Menu href={href} backBeh={{ title: 'Retour', link: '/a-propos' }} />
       <Container>
         <div className="block">
           <h2>Nos clients</h2>
@@ -72,7 +74,7 @@ const ClientsPage = ({ history, data }) => {
           <h2>Réalisations</h2>
           <PortfolioList data={list} />
           <div className="padding-view-all-center">
-            <Link to="/portfolio" className="link-with-arrow">Voir toutes les réalisations</Link>
+            <Link to="/realisations" className="link-with-arrow">Voir toutes les réalisations</Link>
           </div>
         </div>
       </Container>
@@ -85,7 +87,10 @@ export default ClientsPage
 
 export const clientsPageQuery = graphql`
   query clientsPageQuery {
-    allContentfulPortfolioSingle(limit: 3) {
+    allContentfulPortfolioSingle(
+      filter: { node_locale: { eq: "fr-CA" } }
+      limit: 3
+    ) {
       edges {
         node {
           title

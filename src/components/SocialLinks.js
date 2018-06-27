@@ -3,12 +3,12 @@ import { Link, IconFacebook, IconLinkedIn } from 'components'
 
 const SocialLinks = ({ small, style }) => (
   <div className={small ? "social-links-small" : "social-links" }>
-    <div className="social-link">
+    <Link to="https://www.facebook.com/konnexionca" target="_blank" className="social-link">
       <IconFacebook light={style} />
-    </div>
-    <div className="social-link">
+    </Link>
+    <Link to="https://www.linkedin.com/company/konnexion-ca/" target="_blank" className="social-link">
       <IconLinkedIn light={style} />
-    </div>
+    </Link>
     {!small &&
       <Link
         to="/contact"

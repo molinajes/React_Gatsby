@@ -1,7 +1,8 @@
-import React, { PureComponent } from 'react'
+import React, { Component, PureComponent } from 'react'
 import _ from 'lodash'
 import { Form, Text } from 'react-form'
-import MailchimpSubscribe from "react-mailchimp-subscribe"
+import MailchimpSubscribe from 'react-mailchimp-subscribe'
+import { FBShare, TWShare } from 'components/ShareButtons'
 
 import { Error, Menu, Section, Container, Link, BlogPost } from 'components'
 
@@ -18,7 +19,7 @@ class SearchField extends PureComponent {
     return (
       <div className="blog-sidebar-form">
         <input value={this.state.query} onChange={::this.handleChange} className="text-field w-input" placeholder="Search" />
-        <Link to={`/search?query=${this.state.query}`} type="submit">
+        <Link to={`/search?${this.state.query}`} type="submit">
           <button className="blog-sidebar-form-button" />
         </Link>
       </div>
@@ -26,16 +27,17 @@ class SearchField extends PureComponent {
   }
 }
 
+// <Link key={link} to={`/nouvelles/tag/${link}`} className="tag-link">{title}</Link>
 const Tags = ({ tags }) => (
   <div className="tag-link-div">
     {(!tags || tags.lenght === 0) && <p>There's no tags</p>}
-    {_.map(tags, ({ title, link }) => <Link key={link} to={`/blog/tag/${link}`} className="tag-link">{title}</Link>)}
+    {_.map(tags, ({ title, link }) => <div key={link} className="tag-link">{title}</div>)}
   </div>
 )
 
 const MailChimp = () => (
   <MailchimpSubscribe
-    url="//xxxx.us13.list-manage.com/subscribe/post?u=zefzefzef&id=fnfgn"
+    url="https://konnexion.us9.list-manage.com/subscribe/post?u=968baafa282cbbc86d540ae60&id=da793a762b"
     render={
       ({ subscribe, status, message }) => (
         <div>
@@ -47,10 +49,10 @@ const MailChimp = () => (
                   className="blog-sidebar-form"
                 >
                   <Text
-                    field="email"
+                    field="EMAIL"
                     className="text-field w-input"
                     maxLength="256"
-                    placeholder="Adresse courriel"
+                    placeholder="Email"
                   />
                   <button
                     type="submit"
@@ -75,22 +77,44 @@ const PopularArticles = ({ data }) => (
   </div>
 )
 
-const BlogSideBar = () => (
-  <div className="blog-sidebar">
-    <SearchField />
-    <div className="blog-sidebar-padding">
-      <h5>Articles populaires</h5>
-      <PopularArticles />
-    </div>
-    <div className="blog-sidebar-padding">
-      <h5>Tags</h5>
-      <Tags tags={[{ title: 'web', link: 'web'}]} />
-    </div>
-    <div className="blog-sidebar-padding">
-      <h5>Infolettre</h5>
-      <MailChimp />
-    </div>
-  </div>
-)
+class BlogSideBar extends Component {
+  state = {
+    url: ''
+  }
+
+  componentDidMount() {
+    this.setState({
+      url: window && window.location.href
+    })
+  }
+
+  render() {
+    return (
+      <div className="blog-sidebar">
+        <div className="blog-sidebar-padding">
+          <h5>Partager</h5>
+          <div className="blog-sidebar-sharebuttons">
+            <FBShare url={this.state.url} />
+            <TWShare url={this.state.url} />
+          </div>
+        </div>
+        <SearchField />
+        <div className="blog-sidebar-padding">
+          <h5>Popular Articles</h5>
+          <PopularArticles />
+        </div>
+        <div className="blog-sidebar-padding">
+          <h5>Tags</h5>
+          <Tags tags={[{ title: 'web', link: 'web'}]} />
+        </div>
+        <div className="blog-sidebar-padding">
+          <h5>Newsletter</h5>
+          <MailChimp />
+        </div>
+      </div>
+    )
+  }
+
+}
 
 export default BlogSideBar

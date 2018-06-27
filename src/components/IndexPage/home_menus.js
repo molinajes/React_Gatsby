@@ -7,7 +7,7 @@ const menu = [
   },
   {
     title: 'Réalisations',
-    hash: 'portfolio',
+    hash: 'realisations',
     color: 1,
     menu: true,
   },
@@ -19,13 +19,13 @@ const menu = [
   },
   {
     title: 'À propos',
-    hash: 'about',
+    hash: 'a-propos',
     color: 2,
     menu: true,
   },
   {
     title: 'Nouvelles',
-    hash: 'blog',
+    hash: 'nouvelles',
     color: 1,
     menu: true,
   },

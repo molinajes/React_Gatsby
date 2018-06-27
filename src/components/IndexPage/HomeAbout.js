@@ -11,7 +11,7 @@ const HomeApropos = () => (
         <p>Nous croyons qu’avec des stratégies innovantes et des solutions créatives, nous pouvons aider n’importe quelle entreprise, de la start-up à la PME, à développer son plein potentiel.</p>
         <p>Nous nous occupons de votre projet, comme s’il était le nôtre.</p>
         <div className="padding-view-all">
-          <Link to='/about' className="link-with-arrow">En savoir plus</Link>
+          <Link to='/a-propos' className="link-with-arrow">En savoir plus</Link>
         </div>
       </div>
     </Container>

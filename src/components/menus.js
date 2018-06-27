@@ -7,7 +7,7 @@ const menu = [
   },
   {
     title: 'Réalisations',
-    href: 'portfolio',
+    href: 'realisations',
     color: 1,
     menu: true,
   },
@@ -19,13 +19,13 @@ const menu = [
   },
   {
     title: 'À propos',
-    href: 'about',
+    href: 'a-propos',
     color: 1,
     menu: true,
   },
   {
     title: 'Nouvelles',
-    href: 'blog',
+    href: 'nouvelles',
     color: 1,
     menu: true,
   },
@@ -39,6 +39,12 @@ const menu = [
     title: 'Clients',
     href: 'clients',
     color: 0,
+    menu: false,
+  },
+  {
+    title: 'Search',
+    href: 'search',
+    color: 1,
     menu: false,
   }
 ]
