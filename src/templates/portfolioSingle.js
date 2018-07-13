@@ -24,7 +24,8 @@ class PortfolioSingle extends Component {
     return (
       <Section>
         <Helmet title={`${title} | Réalisations`}>
-          <meta name='description' content={''} />
+          <meta property="og:title" content={title} />
+          <meta property="og:image" content={mainImage && mainImage.resize.src} />
         </Helmet>
         <Menu href={href} color={menuColor} backBeh={{ title: 'Retour', link: '/realisations' }} />
         {backgroundColor &&
@@ -82,6 +83,9 @@ export const portfolioSingleQuery = graphql`
         }
         file {
           url
+        }
+        resize (width: 1200, height: 630, resizingBehavior: PAD) {
+          src
         }
       }
       content {

@@ -73,7 +73,7 @@ const MailChimp = () => (
 
 const PopularArticles = ({ data }) => (
   <div>
-    {_.map(data, ({ title }) => <BlogPost mini title={title} />)}
+    {_.map(data, (item) => <BlogPost key={item.slug} mini {...item} />)}
   </div>
 )
 
@@ -101,7 +101,7 @@ class BlogSideBar extends Component {
         <SearchField />
         <div className="blog-sidebar-padding">
           <h5>Popular Articles</h5>
-          <PopularArticles />
+          <PopularArticles data={this.props.popularPosts} />
         </div>
         <div className="blog-sidebar-padding">
           <h5>Tags</h5>

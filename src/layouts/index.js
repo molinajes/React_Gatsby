@@ -1,26 +1,28 @@
-import React from 'react'
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
+import moment from 'moment'
+import { og, getPageTitle, getPageImage } from 'utils'
 
 import './index.css'
 
-const Layout = ({ children, data }) => {
-  return (
-    <div>
-      <Helmet
-        title={data.site.siteMetadata.title}
-        htmlAttributes={{ lang: 'fr' }}
-      >
-        {/* <meta charSet='utf-8' /> */}
-        {/* <meta name='description' content='Konnexion' /> */}
-        {/* <link rel='manifest' href='/manifest.json' /> */}
-        <link rel='shortcut icon' href='/favicons/favicon.ico' type='image/x-icon' />
-        <link rel='icon' href='/favicons/favicon.png' type='image/png' />
-        <link rel='apple-touch-icon' href='/favicons/apple-touch-icon.png' type='image/png' />
-      </Helmet>
-      {children()}
-    </div>
-  )
+class Layout extends PureComponent {
+  render() {
+    let { children, data, location, ...props } = this.props
+    let href = location.pathname.slice(1)
+    let pageTitle = getPageTitle(href)
+    return (
+      <div>
+        <Helmet
+          title={data.site.siteMetadata.title}
+          htmlAttributes={{ lang: 'fr' }}
+        >
+          {og({ href, pageTitle })}
+        </Helmet>
+        {children()}
+      </div>
+    )
+  }
 }
 
 

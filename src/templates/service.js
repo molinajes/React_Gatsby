@@ -28,7 +28,9 @@ const ServiceTemplate = ({ data, history }) => {
   let { title, description, service_item } = _.get(data, 'contentfulServiceCategory')
   return (
     <Section dark>
-      <Helmet title={`${title} | Services`} />
+      <Helmet title={`${title} | Services`}>
+        <meta property="og:title" content={title} />
+      </Helmet>
       <Menu href={href} backBeh={{ title: 'Accueil', link: '/#services' }} />
       <Container white>
         <h1>{title}</h1>

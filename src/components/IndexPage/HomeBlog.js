@@ -20,7 +20,7 @@ const HomeBlogItem = ({ title, datePublished, category, excerpt, featuredImage, 
     />
     <div className="home-blog-item-texts">
       <div className="home-blog-item-texts-div">
-        <span className="home-blog-item-texts-date">{moment(datePublished).format('Do MMMM YYYY')}</span>
+        <span className="home-blog-item-texts-date">{moment(datePublished).locale('fr').format('Do MMMM YYYY')}</span>
         <span className="home-blog-item-texts-date">{category && category.title}</span>
       </div>
       <Link to={`/nouvelles/${slug}`}>

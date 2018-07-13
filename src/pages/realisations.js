@@ -22,7 +22,7 @@ const PortfolioPage = ({ history, data: { allContentfulPortfolioSingle } }) => {
         <h1>Réalisations</h1>
         <Tabs>
           <TabList>
-            <Tab>All</Tab>
+            <Tab>Tout</Tab>
             {_.map(_.keys(groupedPortfolioSingle), item => <Tab key={item}>{item}</Tab>)}
           </TabList>
           <TabPanel>

@@ -1,4 +1,6 @@
+import React from 'react'
 import _ from 'lodash'
+import menus from 'components/menus'
 
 const routes = []
 
@@ -56,7 +58,27 @@ const hexToHSL = (hex) => {
   return HSL;
 }
 
+const og = ({
+  pageTitle,
+  description,
+  href,
+}) => ([
+  pageTitle && <title key="title">{pageTitle}</title>,
+  <meta key="description" name="description" content={description} />,
+  <meta key="ogurl" property="og:url" content={`https://konnexion.ca/${href}`} />,
+  <meta key="ogtype" property="og:type" content="article" />,
+  <meta key="ogtitle" property="og:title" content={pageTitle} />,
+  <meta key="ogdescription" property="og:description" content={description || "Konnexion"} />,
+  <meta key="ogimage" property="og:image" content={`https://konnexion.ca/images/og/${href || 'konnexion'}.png`} />,
+])
+
+const getPageTitle = (href) => _.get(_.find(menus, { href }), 'title')
+const getPageImage = (href) => _.get(_.find(menus, { href }), 'image')
+
 export {
+  getPageTitle,
+  getPageImage,
+  og,
   hexToHSL,
   // getTransitionStyle,
   getColor,

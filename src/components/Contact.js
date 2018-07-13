@@ -35,8 +35,8 @@ class ContactForm extends Component {
               flexDirection: 'column',
               // justifyContent: 'center',
             }}>
-              <h4>Done.</h4>
-              <p>We'll contact you!</p>
+              <h4>Complété!</h4>
+              <p>Notre équipe vous contactera d'ici 24 heures.</p>
               <div>
                 <button
                   className="link-with-arrow"
@@ -47,7 +47,7 @@ class ContactForm extends Component {
                   }}
                   onClick={() => { this.setState({ sent: false })}}
                 >
-                  Retry
+                  Retour
                 </button>
               </div>
             </div>

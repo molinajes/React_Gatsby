@@ -50,8 +50,9 @@ class BlogPostPage extends Component {
 
   render() {
     let href = _.get(this.props, 'history.location.pathname')
-    let { title, datePublished, category, featuredImage, content, excerpt: { excerpt }, author } = this.props.data.contentfulBlogPost
+    let { title, datePublished, category, featuredImage, content, excerpt: { excerpt }, author } = _.get(this.props, 'data.contentfulBlogPost')
     let nextPost = _.get(this.props, 'pathContext.next.slug')
+    let popularPosts = _.map(_.get(this.props, 'data.allContentfulBlogPost.edges'), i => i.node)
 
     return (
       <Section>
@@ -85,7 +86,7 @@ class BlogPostPage extends Component {
               </div>
 
             </div>
-            <BlogSideBar />
+            <BlogSideBar popularPosts={popularPosts} />
           </div>
         </Container>
       </Section>
@@ -150,5 +151,36 @@ export const blogPostPageQuery = graphql`
         email
       }
     }
+
+    allContentfulBlogPost (
+      filter: {
+        node_locale: { eq: "fr-CA" }
+        showInPopular: { eq: true }
+      }
+    ) {
+      edges {
+        node {
+          title
+          slug
+          category {
+            title
+          }
+          featuredImage {
+            sizes {
+              src
+              srcSet
+              sizes
+            }
+            resize (
+              width: 60
+              height: 60
+            ) {
+              src
+            }
+          }
+        }
+      }
+    }
+
   }
 `
